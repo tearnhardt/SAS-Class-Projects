@@ -2,14 +2,14 @@
 * This program produces a specified-by-state(s) report and general histograms 
 * on Census housing data from IPUMS.
 * 
-* Authors: Aaron Barlowe, Lingchao Mao, Taylor Earnhardt
+* Authors: Taylor Earnhardt, Aaron Barlowe, Lingchao Mao
 *
 */
 
 
 *Setting up directories;
 
-%let ST555 = L:\St555;
+%let ST555 = L:\St555; 
 
 %let Compare = S:\Desktop\ST446\Project 2;
 
@@ -18,7 +18,8 @@
 
 x "cd &ST555";
 
-filename ipums "&ST555\IPUMS 2005 Values.txt";
+*This is the file that contains the information on Mortgage Payments, Household Income, and the House Value;
+filename ipums "&ST555\IPUMS 2005 Values.txt"; 
 
 libname compare "&Compare";
 
@@ -42,9 +43,7 @@ ods listing close;
 %let pair = 3;
 
 
-
 *Reading in the IPUMS dataset;
-
 
 data compare.amounts(keep = serial category value);
     infile ipums;
@@ -54,7 +53,7 @@ data compare.amounts(keep = serial category value);
         category2   $ 40-55
         value2      comma10.
         category3   $ 66-75
-        value3      comma10.;
+        value3      comma10. ;
     array categ[&pair] $ category:;
     array val[&pair] value:;
     do i = 1 to dim(val);
@@ -94,14 +93,13 @@ quit;
 
 
 
-*Preparing for state report options;
+*Preparing the state report options;
 
 options orientation = landscape nodate;
 
 title "State-Level Listing of Income and Mortgage-Related Values";
 
 footnote J = l height = 8pt "States included: %sysfunc(compress(&state, '""'))";
-
 
 
 *Creating and outputing the state report;
