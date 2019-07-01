@@ -29,6 +29,7 @@ Usage of the DATA step and different forms of input to handle the IPUMS 2005 Val
          3 Mortgage Payment        $0  Household Income   $17,800Home Value$9,999,999
          4 Mortgage Payment      $900  Household Income  $185,000Home Value  $137,500
  ```
+ The file is read in as compare.amounts.
  ```sas
  data compare.amounts(keep = serial category value);
     infile ipums;
@@ -51,4 +52,22 @@ array categ[&pair] $ category:;
         output;
     end;
 run;
+```
+**Transposing and Joining:**
+The demographics dataset needed to be transposed using PROC TRANSPOSE so that it could be joined to the compare.amounts dataset. 
+```sas
+proc transpose data= st555.demographics out= compare.demog;
+    by Serial;
+    id source;
+    var value;
+run;
+```
+Joining both datasets using PROC SQL to make the compare.alldata dataset. Their common variable is their Serial Number given to each household. 
+```sas
+proc sql;
+    create table compare.alldata as
+    select d.serial, d.state, d.metro, d.ownership, a.category, a.value
+    from compare.amounts as a left join compare.demog as d on a.serial=d.serial
+    order by state, metro, ownership, serial, category, value;
+quit;
 ```
