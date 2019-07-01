@@ -1,7 +1,7 @@
 # SAS Class Projects 
 A small showcase of some of the projects and concepts learned throughout my SAS Programming courses at NC State University. 
 ## Census Housing Data Project
-An assigned project to test the students' understanding of how to transpose data through different methods, join datasets using PROC SQL, and create more dynamic code utilizing macros.Additionally we created a specialized template to plot histograms and boxplots of the finalized dataset. 
+An assigned project to test the students' understanding of how to transpose data through different methods, join datasets using PROC SQL, and create more dynamic code utilizing macros. Additionally we created a specialized template to plot histograms and boxplots of the finalized dataset. 
 ### Data
 The data used for this project were edited datasets extracted from IPUMS. Their format and generalized values will be described here with some clarification of which variables were chosen for extraction. 
 <br>
