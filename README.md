@@ -15,6 +15,6 @@ st555.demographics -- This dataset contains State, Metro, and Ownership informat
 st446.amounts, st446.amountsdesc, st446.alldata, st446.alldatadesc -- These datasets were given to us as a means of comparing our results to the professor's.
 <br>
 <br>
-Citation:
+Citation:  
 Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Pacas and Matthew Sobek. IPUMS USA: Version 9.0 [dataset]. Minneapolis, MN: IPUMS, 2019. https://doi.org/10.18128/D010.V9.0
 ### Code 
