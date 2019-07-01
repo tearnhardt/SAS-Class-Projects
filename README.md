@@ -23,9 +23,32 @@ Setting up a macro for the number of category to value pairings so that the code
 ```sas 
 %let pair = 3;
 ```
-Usage of the DATA step and different forms of input to handle the .txt file's format. 
+Usage of the DATA step and different forms of input to handle the IPUMS 2005 Values.txt file's format. A portion of that format is shown below. 
 ```
          2 Mortgage Payment        $0  Household Income   $12,000Home Value$9,999,999
          3 Mortgage Payment        $0  Household Income   $17,800Home Value$9,999,999
          4 Mortgage Payment      $900  Household Income  $185,000Home Value  $137,500
  ```
+ ```sas
+ data compare.amounts(keep = serial category value);
+    infile ipums;
+    input Serial    1-10
+        category1   $ 12-27
+        value1      comma10.
+        category2   $ 40-55
+        value2      comma10.
+        category3   $ 66-75
+        value3      comma10. ;
+```
+Arrays are used to cycle through the rows of data and transpose it as the file is read in to SAS. *If the value is 9999999 and the category is Home Value then the actual value is missing.* 
+```sas
+array categ[&pair] $ category:;
+    array val[&pair] value:;
+    do i = 1 to dim(val);
+        Category = categ[i];
+        if val[i] = 9999999 and categ[i] = 'Home Value' then val[i] = .;
+        Value = val[i];
+        output;
+    end;
+run;
+```
