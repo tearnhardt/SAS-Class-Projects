@@ -1,0 +1,8 @@
+# Ignore class files
+*.class
+
+#Ignore temporary files ~
+*~
+
+#Ignore .settings directory
+.settings/
