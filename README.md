@@ -17,4 +17,15 @@ st446.amounts, st446.amountsdesc, st446.alldata, st446.alldatadesc -- These data
 <br>
 Citation:  
 Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Pacas and Matthew Sobek. IPUMS USA: Version 9.0 [dataset]. Minneapolis, MN: IPUMS, 2019. https://doi.org/10.18128/D010.V9.0
-### Code 
+### Code Documentation 
+**Reading in the Data:**
+Setting up a macro for the number of category to value pairings so that the code can be adjusted easily for future use. 
+```sas 
+%let pair = 3;
+```
+Usage of the DATA step and different forms of input to handle the .txt file's format. 
+```
+         2 Mortgage Payment        $0  Household Income   $12,000Home Value$9,999,999
+         3 Mortgage Payment        $0  Household Income   $17,800Home Value$9,999,999
+         4 Mortgage Payment      $900  Household Income  $185,000Home Value  $137,500
+ ```
