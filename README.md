@@ -54,7 +54,7 @@ array categ[&pair] $ category:;
 run;
 ```
 **Transposing and Joining:**
-The demographics dataset needed to be transposed using PROC TRANSPOSE so that it could be joined to the compare.amounts dataset. 
+The demographics dataset needed to be transposed using [PROC TRANSPOSE](https://documentation.sas.com/?docsetId=proc&docsetTarget=n1xno5xgs39b70n0zydov0owajj8.htm&docsetVersion=9.4&locale=en) so that it could be joined to the compare.amounts dataset. 
 ```sas
 proc transpose data= st555.demographics out= compare.demog;
     by Serial;
@@ -62,7 +62,7 @@ proc transpose data= st555.demographics out= compare.demog;
     var value;
 run;
 ```
-Joining both datasets using PROC SQL to make the compare.alldata dataset. Their common variable is their Serial Number given to each household. 
+Joining both datasets using [PROC SQL](https://documentation.sas.com/?docsetId=sqlproc&docsetTarget=p12ohgh32ffm6un13s7l2d5p9c8y.htm&docsetVersion=9.4&locale=en) to make the compare.alldata dataset. Their common variable is their Serial Number given to each household. 
 ```sas
 proc sql;
     create table compare.alldata as
