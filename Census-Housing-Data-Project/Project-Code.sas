@@ -9,23 +9,23 @@
 
 *Setting up directories;
 
-%let ST555 = L:\St555; 
+%let Census = L:\Census; 
 
-%let Compare = S:\Desktop\ST446\Project 2;
+%let Compare = S:\Desktop\Class\Project 2;
 
-%let ST446 = L:\ST446\MP#2;
+%let Class = L:\Class\MP#2;
 
 
-x "cd &ST555";
+x "cd &Census";
 
 *This is the file that contains the information on Mortgage Payments, Household Income, and the House Value;
-filename ipums "&ST555\IPUMS 2005 Values.txt"; 
+filename ipums "&Census\IPUMS 2005 Values.txt"; 
 
 libname compare "&Compare";
 
-libname st555 "&ST555";
+libname Census "&Census";
 
-libname st446 "&ST446";
+libname Class "&Class";
 
 x "cd &Compare";
 
@@ -67,7 +67,7 @@ run;
 
 *Transposing demographics data to be used in the next step;
 
-proc transpose data= st555.demographics out= compare.demog;
+proc transpose data= Census.demographics out= compare.demog;
     by Serial;
     id source;
     var value;
@@ -155,7 +155,7 @@ quit;
 proc template;
     define statgraph gtl.histograph;
         begingraph;
-            entrytitle "Distributions of %sysfunc(compress(&category1, “_”)), %sysfunc(compress(&category2, “_”)), and %sysfunc(compress(&category3, “_”))";
+            entrytitle "Distributions of %sysfunc(compress(&category1, "_"�)), %sysfunc(compress(&category2, "_"�)), and %sysfunc(compress(&category3, "_"�))";
             entrytitle "Based on the &year Census";
             layout lattice / columns = 3 rows = 2
                             columngutter = 1
@@ -164,9 +164,9 @@ proc template;
                             columndatarange = union
                             ;
                 columnaxes;
-                    columnaxis / Label = "%sysfunc(compress(&category1, “_”))";
-                    columnaxis / Label = "%sysfunc(compress(&category2, “_”))";
-                    columnaxis / Label = "%sysfunc(compress(&category3, “_”))";
+                    columnaxis / Label = "%sysfunc(compress(&category1, "_"�))";
+                    columnaxis / Label = "%sysfunc(compress(&category2, "_"�))";
+                    columnaxis / Label = "%sysfunc(compress(&category3, "_"�))";
                 endcolumnaxes;
                 layout overlay / yaxisopts = (Label = "Median Value is &median1");
                     histogram &category1 ;
@@ -240,25 +240,25 @@ ods output close;
 
 *Comparisons between datasets;
 
-proc compare base = st446.amounts
+proc compare base = Class.amounts
     compare = compare.amounts
     out = compare.diff1a
     &options ;
 run;
 
-proc compare base = st446.alldata
+proc compare base = Class.alldata
     compare = compare.alldata
     out = compare.diff1b
     &options ;
 run;
 
-proc compare base = st446.amountsdesc
+proc compare base = Class.amountsdesc
     compare = compare.amountsdesc
     out = compare.diff2a
    &options ;
 run;
 
-proc compare base = st446.alldatadesc
+proc compare base = Class.alldatadesc
     compare = compare.alldatadesc
     out = compare.diff2b
     &options ;
