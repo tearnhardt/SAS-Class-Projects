@@ -177,7 +177,7 @@ ods graphics off;
 ods listing close;
 ```
 The resulting graphs are below.
-![alt text](https://github.com/tearnhardt/SAS-Class-Projects/Census-Houseing-Data-Project/HistoBoxes.png "HistoBoxes")
+![alt text](https://github.com/tearnhardt/SAS-Class-Projects/blob/master/Census-Housing-Data-Project/HistoBoxes.png "HistoBoxes")
 
 As a way of checking our work, description portions to the compare.amounts and compare.alldata datasets were made to be compared to the professor's own datasets. [PROC DATASETS](https://documentation.sas.com/?docsetId=proc&docsetTarget=p0xdkenol7pi1cn14p0iq38shax4.htm&docsetVersion=9.4&locale=en) was used to make the descriptions and [PROC COMPARE](https://documentation.sas.com/?docsetId=proc&docsetTarget=n0c1y14wyd3u7yn1dmfcpaejllsn.htm&docsetVersion=9.4&locale=en) to compare our group's final datasets and the professor's. 
 ```sas
