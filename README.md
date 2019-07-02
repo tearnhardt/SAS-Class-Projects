@@ -17,7 +17,7 @@ The data used for this project were edited datasets extracted from IPUMS. Their 
 <br>
 Citation:  
 Steven Ruggles, Sarah Flood, Ronald Goeken, Josiah Grover, Erin Meyer, Jose Pacas and Matthew Sobek. IPUMS USA: Version 9.0 [dataset]. Minneapolis, MN: IPUMS, 2019. https://doi.org/10.18128/D010.V9.0
-### Code Documentation 
+### Code Walkthrough 
 **Reading in the Data:**
 Setting up a macro for the number of category to value pairings so that the code can be adjusted easily for future use. 
 ```sas 
@@ -71,6 +71,7 @@ proc sql;
     order by state, metro, ownership, serial, category, value;
 quit;
 ```
+**Creating the Report:**
 To make a report that only gives the households from certain states, a macro variable was used so that the report could be easily changed. The footnote will list the states included, which requires the use of a macro function so that they are listed correctly. 
 ```sas
 %let state = "Alabama" "Alaska";   
@@ -102,6 +103,7 @@ title;
 
 footnote;
 ```
+**Histograms and Boxplots:**
 One part of the project was to make histograms and boxplots for Mortgage Payment, Household Income, and Home Value in a particular format. The compare.amounts dataset needed to be transposed in order for this to work. 
 ```sas
 proc transpose data = compare.amounts out = compare.ipums(drop = _NAME_);
@@ -176,9 +178,13 @@ ods graphics off;
 
 ods listing close;
 ```
-The resulting graphs are below.
+<br>
+The template rendered with the current datasets:
+<br>
 ![alt text](https://github.com/tearnhardt/SAS-Class-Projects/blob/master/Census-Housing-Data-Project/HistoBoxes.png "HistoBoxes")
-
+<br>
+<br>
+**Descriptions and Comparisons:**
 As a way of checking our work, description portions to the compare.amounts and compare.alldata datasets were made to be compared to the professor's own datasets. [PROC DATASETS](https://documentation.sas.com/?docsetId=proc&docsetTarget=p0xdkenol7pi1cn14p0iq38shax4.htm&docsetVersion=9.4&locale=en) was used to make the descriptions and [PROC COMPARE](https://documentation.sas.com/?docsetId=proc&docsetTarget=n0c1y14wyd3u7yn1dmfcpaejllsn.htm&docsetVersion=9.4&locale=en) to compare our group's final datasets and the professor's. 
 ```sas
 %let options = outbase outcompare outdiff outnoequal method = absolute criterion = 1E-6 noprint;
@@ -203,8 +209,6 @@ proc datasets nolist;
 quit;
 
 ods output close;
-
-
 
 
 proc compare base = Class.amounts
@@ -232,11 +236,4 @@ proc compare base = Class.alldatadesc
 run;
 
 quit;
-
-
-
-
-
-
-
-
+```
